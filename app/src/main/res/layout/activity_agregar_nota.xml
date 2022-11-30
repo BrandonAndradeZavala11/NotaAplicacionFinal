@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".agregarNota"
+    android:background="@color/white">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imgatras"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+
+        <ImageView
+            android:id="@+id/imghecho"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:layout_marginEnd="14dp"
+            app:srcCompat="@drawable/ic_baseline_done_24"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <EditText
+        android:id="@+id/Nombre"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/white"
+        android:ems="10"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
+        android:inputType="textPersonName"
+        android:hint="Nombre de la nota"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"/>
+
+    <EditText
+        android:id="@+id/descripcionota"
+        android:layout_width="380dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="26dp"
+        android:background="@color/white"
+        android:ems="10"
+        android:gravity="top"
+        android:hint="Anota tu descripcion"
+        android:inputType="textPersonName"
+        android:lineSpacingMultiplier="1.8"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/Nombre"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/Nombre"
+        app:layout_constraintTop_toBottomOf="@+id/Nombre"
+        app:layout_constraintVertical_bias="0.002" />
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:srcCompat="@tools:sample/avatars"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descripcionota"/>
+
+    <Button
+        android:id="@+id/btnAgregar"
+        android:layout_width="151dp"
+        android:layout_height="66dp"
+        android:text="Tomar foto"
+        style="?attr/materialButtonOutlinedStyle"
+        app:strokeColor="@color/purple_500"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+
+    <Button
+        android:id="@+id/btnAudios"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="121dp"
+        android:layout_height="63dp"
+        android:text="Grabar audio"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.031"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAgregar"
+        app:strokeColor="@color/purple_500" />
+
+    <Button
+        android:id="@+id/btnAudioparar"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="121dp"
+        android:layout_height="63dp"
+        android:text="Detener audio"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAgregar"
+        app:strokeColor="@color/purple_500" />
+
+    <Button
+        android:id="@+id/btnAudioescuchar"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="121dp"
+        android:layout_height="63dp"
+        android:text="Escuchar audio"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.948"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAgregar"
+        app:strokeColor="@color/purple_500" />
+
+    <Button
+        android:id="@+id/btnVideos"
+        android:layout_width="151dp"
+        android:layout_height="66dp"
+        android:text="Grabar video"
+        style="?attr/materialButtonOutlinedStyle"
+        app:strokeColor="@color/purple_500"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAudioescuchar" />
+
+    <EditText
+        android:id="@+id/tiponota"
+        android:layout_width="45dp"
+        android:layout_height="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/descripcionota"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btnAudios" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

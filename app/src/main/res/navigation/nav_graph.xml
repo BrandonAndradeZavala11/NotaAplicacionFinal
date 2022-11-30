@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainActivity">
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.notaaplicacion.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
+    <fragment
+        android:id="@+id/fragmentAudio"
+        android:name="com.example.notaaplicacion.FragmentAudio"
+        android:label="fragment_audio"
+        tools:layout="@layout/fragment_audio" >
+        <action
+            android:id="@+id/action_fragmentAudio_to_mainActivity"
+            app:destination="@id/mainActivity" />
+        <action
+            android:id="@+id/action_fragmentAudio_to_fragmentTareas"
+            app:destination="@id/fragmentTareas" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentTareas"
+        android:name="com.example.notaaplicacion.FragmentTareas"
+        android:label="fragment_tareas"
+        tools:layout="@layout/fragment_tareas" >
+        <action
+            android:id="@+id/action_fragmentTareas_to_mainActivity"
+            app:destination="@id/mainActivity" />
+        <action
+            android:id="@+id/action_fragmentTareas_to_fragmentAudio"
+            app:destination="@id/fragmentAudio" />
+        <action
+            android:id="@+id/action_fragmentTareas_to_fragmentImagen"
+            app:destination="@id/fragmentImagen" />
+        <action
+            android:id="@+id/action_fragmentTareas_to_fragmentVideo"
+            app:destination="@id/fragmentVideo" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentImagen"
+        android:name="com.example.notaaplicacion.FragmentImagen"
+        android:label="fragment_imagen"
+        tools:layout="@layout/fragment_imagen" >
+        <action
+            android:id="@+id/action_fragmentImagen_to_fragmentTareas"
+            app:destination="@id/fragmentTareas" />
+        <action
+            android:id="@+id/action_fragmentImagen_to_mainActivity"
+            app:destination="@id/mainActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentVideo"
+        android:name="com.example.notaaplicacion.FragmentVideo"
+        android:label="fragment_video"
+        tools:layout="@layout/fragment_video" >
+        <action
+            android:id="@+id/action_fragmentVideo_to_fragmentTareas"
+            app:destination="@id/fragmentTareas" />
+        <action
+            android:id="@+id/action_fragmentVideo_to_mainActivity"
+            app:destination="@id/mainActivity" />
+    </fragment>
+</navigation>
