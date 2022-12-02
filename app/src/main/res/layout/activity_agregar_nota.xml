@@ -33,10 +33,10 @@
             android:id="@+id/imghecho"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="8dp"
+            android:layout_alignParentEnd="true"
             android:layout_marginEnd="14dp"
-            app:srcCompat="@drawable/ic_baseline_done_24"
-            android:layout_alignParentEnd="true"/>
+            android:padding="8dp"
+            app:srcCompat="@drawable/ic_baseline_done_24" />
     </RelativeLayout>
 
     </androidx.appcompat.widget.Toolbar>
@@ -60,8 +60,8 @@
 
     <EditText
         android:id="@+id/descripcionota"
-        android:layout_width="380dp"
-        android:layout_height="140dp"
+        android:layout_width="373dp"
+        android:layout_height="79dp"
         android:layout_marginTop="26dp"
         android:background="@color/white"
         android:ems="10"
@@ -88,41 +88,45 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descripcionota"/>
 
+
     <Button
         android:id="@+id/btnAgregar"
-        android:layout_width="151dp"
-        android:layout_height="66dp"
-        android:text="Tomar foto"
-        style="?attr/materialButtonOutlinedStyle"
-        app:strokeColor="@color/purple_500"
-        app:cornerRadius="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-
-    <Button
-        android:id="@+id/btnAudios"
         style="?attr/materialButtonOutlinedStyle"
         android:layout_width="121dp"
-        android:layout_height="63dp"
-        android:text="Grabar audio"
+        android:layout_height="54dp"
+        android:layout_marginTop="72dp"
+        android:text="Tomar foto"
         app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.031"
+        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAgregar"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:strokeColor="@color/purple_500" />
+
+    <Button
+        android:id="@+id/btnVideos"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="127dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="12dp"
+        android:text="Grabar video"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAudioescuchar"
         app:strokeColor="@color/purple_500" />
 
     <Button
         android:id="@+id/btnAudioparar"
         style="?attr/materialButtonOutlinedStyle"
-        android:layout_width="121dp"
-        android:layout_height="63dp"
+        android:layout_width="108dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="8dp"
         android:text="Detener audio"
         app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnAgregar"
         app:strokeColor="@color/purple_500" />
@@ -130,32 +134,37 @@
     <Button
         android:id="@+id/btnAudioescuchar"
         style="?attr/materialButtonOutlinedStyle"
-        android:layout_width="121dp"
-        android:layout_height="63dp"
+        android:layout_width="115dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="4dp"
         android:text="Escuchar audio"
         app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.948"
+        app:layout_constraintHorizontal_bias="0.925"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnAgregar"
         app:strokeColor="@color/purple_500" />
 
     <Button
-        android:id="@+id/btnVideos"
-        android:layout_width="151dp"
-        android:layout_height="66dp"
-        android:text="Grabar video"
+        android:id="@+id/btnAudios"
         style="?attr/materialButtonOutlinedStyle"
-        app:strokeColor="@color/purple_500"
+        android:layout_width="109dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="8dp"
+        android:text="Grabar audio"
         app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAudioescuchar" />
+        app:layout_constraintTop_toBottomOf="@+id/btnAgregar"
+        app:strokeColor="@color/purple_500" />
+
 
     <EditText
         android:id="@+id/tiponota"
         android:layout_width="45dp"
         android:layout_height="15dp"
+        android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/descripcionota"
         app:layout_constraintHorizontal_bias="0.0"

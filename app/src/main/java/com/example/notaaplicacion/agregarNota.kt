@@ -1,7 +1,8 @@
 package com.example.notaaplicacion
 
-import android.app.Activity
+import android.app.*
 import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -9,6 +10,7 @@ import android.graphics.BitmapFactory
 import android.media.MediaPlayer
 import android.media.MediaRecorder
 import android.net.Uri
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
@@ -17,7 +19,10 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import com.example.notaaplicacion.Model.Nota
 import com.example.notaaplicacion.databinding.ActivityAgregarNotaBinding
 import com.example.notaaplicacion.databinding.ActivityMainBinding
@@ -39,11 +44,16 @@ class agregarNota : AppCompatActivity() {
     private lateinit var oldNota: Nota
     var updateNot = false
     lateinit var mr : MediaRecorder
+    val chanelID = "chat"
+    val chanelName = "chat"
 
+
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAgregarNotaBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         var path : String = Environment.getExternalStorageDirectory().toString()+"/miadudio.3gp"
         mr = MediaRecorder()
@@ -55,7 +65,6 @@ class agregarNota : AppCompatActivity() {
 
         binding.btnAudioparar.isEnabled = true
 
-
         try {
             oldNota = intent.getSerializableExtra("Nota_Actual") as Nota
             binding.Nombre.setText(oldNota.nombre)
@@ -65,6 +74,15 @@ class agregarNota : AppCompatActivity() {
         }catch(e: Exception){
             e.printStackTrace()
         }
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            val importancia = NotificationManager.IMPORTANCE_HIGH
+            val channel = NotificationChannel(chanelID,chanelName,importancia)
+            val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            manager.createNotificationChannel(channel)
+
+        }
+
         binding.imghecho.setOnClickListener {
             val nombre = binding.Nombre.text.toString()
             val descripcion = binding.descripcionota.text.toString()
@@ -77,7 +95,7 @@ class agregarNota : AppCompatActivity() {
                     nota = Nota(
                         oldNota.id,nombre,descripcion,formatter.format(Date()),tipo
                     )
-                    saveToGallery()
+
                 }else {
                     nota = Nota(
                         null,nombre,descripcion,formatter.format(Date()),tipo
@@ -91,6 +109,15 @@ class agregarNota : AppCompatActivity() {
                 Toast.makeText(this@agregarNota, "Rellena los datos", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+
+            val notificacion = NotificationCompat.Builder(this,chanelID).also { noti->
+                noti.setContentTitle(binding.Nombre.text.toString())
+                noti.setContentText(binding.descripcionota.text.toString())
+                noti.setSmallIcon(R.drawable.imgnoti)
+            }.build()
+            val notificacionManager = NotificationManagerCompat.from(applicationContext)
+            notificacionManager.notify(1,notificacion)
+
         }
 
 
@@ -126,6 +153,7 @@ class agregarNota : AppCompatActivity() {
 
     }
 
+
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if(requestCode==111 && grantResults[0]==PackageManager.PERMISSION_GRANTED)
@@ -145,15 +173,9 @@ class agregarNota : AppCompatActivity() {
     private fun saveToGallery(){
         val content = createContent()
         val uri = save(content)
-        clearContents(content, uri)
         Toast.makeText(this, getString(R.string.imagen_saved), Toast.LENGTH_LONG).show()
     }
 
-    private fun clearContents(content: ContentValues, uri: Uri) {
-        content.clear()
-        content.put(MediaStore.MediaColumns.IS_PENDING,0)
-        contentResolver.update(uri,content,null,null)
-    }
 
     private fun save(content: ContentValues): Uri {
         var outputStream : OutputStream?
@@ -182,5 +204,6 @@ class agregarNota : AppCompatActivity() {
         }
 
     }
+
 
 }
