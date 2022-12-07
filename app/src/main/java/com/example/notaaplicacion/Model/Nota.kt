@@ -11,5 +11,8 @@ data class Nota(
     @ColumnInfo(name = "nombre") val nombre : String?,
     @ColumnInfo(name = "descripcion") val descripcion : String?,
     @ColumnInfo(name = "fecha") val fecha : String?,
-    @ColumnInfo(name = "tipo") val tipo : String?
+    @ColumnInfo(name = "tipo") val tipo : String?,
+    @ColumnInfo(name = "uriF") val uriF: String?,
+    @ColumnInfo(name = "uriV") val uriV: String?
+
 ) : Serializable
