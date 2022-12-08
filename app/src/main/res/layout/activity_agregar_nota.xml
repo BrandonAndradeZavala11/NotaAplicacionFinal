@@ -101,14 +101,42 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <Button
+        android:id="@+id/btnCargar"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="121dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="12dp"
+        android:text="Cargar foto"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descripcionota"
+        app:strokeColor="@color/purple_500" />
+
+    <Button
+        android:id="@+id/btnCargar2"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="121dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="12dp"
+        android:text="Cargar video"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.944"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descripcionota"
+        app:strokeColor="@color/purple_500" />
+
+    <Button
         android:id="@+id/btnAgregar"
         style="?attr/materialButtonOutlinedStyle"
         android:layout_width="121dp"
         android:layout_height="54dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:text="@string/foto"
         app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.055"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descripcionota"
         app:strokeColor="@color/purple_500" />
@@ -166,7 +194,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.057"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAgregar"
+        app:layout_constraintTop_toBottomOf="@+id/btnCargar"
         app:strokeColor="@color/purple_500" />
 
     <Button
@@ -180,7 +208,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.962"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAgregar"
+        app:layout_constraintTop_toBottomOf="@+id/btnCargar"
         app:strokeColor="@color/purple_500" />
 
     <Button
@@ -194,7 +222,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.527"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAgregar"
+        app:layout_constraintTop_toBottomOf="@+id/btnCargar"
         app:strokeColor="@color/purple_500" />
 
     <EditText

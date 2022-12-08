@@ -59,9 +59,11 @@ class agregarNota : AppCompatActivity() {
     private var player: MediaPlayer? = null
     private val REQUEST_IMAGE_CAPTURE: Int = 1000
     private val REQUEST_VIDEO_CAPTURE: Int = 1001
+    lateinit var uri : Uri
     var photoURI: Uri ="".toUri()
     var urif: String=""
     var uriv: String=""
+    var uriA: String=""
     private lateinit var picker : MaterialTimePicker
     private lateinit var calendar : Calendar
     private lateinit var alarmManager: AlarmManager
@@ -92,6 +94,15 @@ class agregarNota : AppCompatActivity() {
             binding.tiponota.setText(oldNota.tipo)
             binding.imageView.setImageURI(oldNota.uriF?.toUri())
             binding.videoView.setVideoURI(oldNota.uriV?.toUri())
+            binding.btnAudioescuchar.setOnClickListener {
+                oldNota.uriA?.toUri()
+                onPlay(mStartPlaying)
+                binding.btnAudioescuchar.text = when (mStartPlaying) {
+                    true -> "Stop playing"
+                    false -> "Start playing"
+                }
+                mStartPlaying = !mStartPlaying
+            }
             updateNot = true
         }catch(e: Exception){
             e.printStackTrace()
@@ -115,12 +126,12 @@ class agregarNota : AppCompatActivity() {
 
                 if(updateNot){
                     nota = Nota(
-                        oldNota.id,nombre,descripcion,formatter.format(Date()),tipo,urif,uriv
+                        oldNota.id,nombre,descripcion,formatter.format(Date()),tipo,urif,uriv,uriA
                     )
 
                 }else {
                     nota = Nota(
-                        null,nombre,descripcion,formatter.format(Date()),tipo,urif,uriv
+                        null,nombre,descripcion,formatter.format(Date()),tipo,urif,uriv,uriA
                     )
                 }
                 val intent = Intent()
@@ -139,6 +150,21 @@ class agregarNota : AppCompatActivity() {
             val notificacionManager = NotificationManagerCompat.from(applicationContext)
             notificacionManager.notify(1,notificacion)
 
+        }
+
+        binding.btnCargar2.setOnClickListener {
+            val intent :Intent
+            if(Build.VERSION.SDK_INT<19){
+                intent =Intent()
+                intent.setAction(Intent.ACTION_GET_CONTENT)
+                intent.setType("video/*")
+                startActivityForResult(intent,111)
+            }else{
+                intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+                intent.addCategory(Intent.CATEGORY_OPENABLE)
+                intent.setType("video/*")
+                startActivityForResult(Intent.createChooser(intent, "video"), 222)
+            }
         }
 
 
@@ -196,6 +222,21 @@ class agregarNota : AppCompatActivity() {
                         takeVideoIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
                         startActivityForResult(takeVideoIntent, REQUEST_VIDEO_CAPTURE)
                     }
+            }
+        }
+
+        binding.btnCargar.setOnClickListener {
+            val intent :Intent
+            if(Build.VERSION.SDK_INT<19){
+                intent =Intent()
+                intent.setAction(Intent.ACTION_GET_CONTENT)
+                intent.setType("image/*")
+                startActivityForResult(intent,111)
+            }else{
+                intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+                intent.addCategory(Intent.CATEGORY_OPENABLE)
+                intent.setType("image/*")
+                startActivityForResult(Intent.createChooser(intent, "foto"), 111)
             }
         }
 
@@ -459,7 +500,8 @@ class agregarNota : AppCompatActivity() {
     private fun startPlaying() {
         player = MediaPlayer().apply {
             try {
-                setDataSource(fileName)
+                uri = Uri.parse(fileName)
+                setDataSource(uri.path)
                 prepare()
                 start()
             } catch (e: IOException) {

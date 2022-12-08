@@ -13,6 +13,6 @@ data class Nota(
     @ColumnInfo(name = "fecha") val fecha : String?,
     @ColumnInfo(name = "tipo") val tipo : String?,
     @ColumnInfo(name = "uriF") val uriF: String?,
-    @ColumnInfo(name = "uriV") val uriV: String?
-
+    @ColumnInfo(name = "uriV") val uriV: String?,
+    @ColumnInfo(name = "uriA") val uriA: String
 ) : Serializable
